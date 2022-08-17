@@ -14,8 +14,7 @@ customElements.define('react-frame',
         let doc = new DOMParser().parseFromString(this.innerHTML, "text/html");
         let components = doc.documentElement.childNodes[1].childNodes;        
         let output = this.loopNodelist(components);
-
-        console.log(output);
+        
         this.innerHTML = `<div data-root></div>`;
 
         const container = this.querySelector('[data-root]');
@@ -40,23 +39,28 @@ customElements.define('react-frame',
     }
 
     objectFromNode(node) {
-      if (node.localName) {
-        let component = {
-          type: 'component',
-          component: this.handleName(node.localName),
-          props: this.propsFromNode(node.attributes),
-        }
-
-        if (node.childNodes.length) {
-          component.children = this.loopNodelist(node.childNodes);
-        }
-        
-        return component;
-      } else {
-        return {
-          type: 'text',
-          text: node.textContent
-        }
+      switch(node.nodeName){
+        // text nodes
+        case '#text':
+          return {
+            type: 'text',
+            text: node.textContent
+          }
+        // skip html comments <!-- foobar -->
+        case '#comment':
+          return {}
+        default:
+          let component = {
+            type: 'component',
+            component: this.handleName(node.localName),
+            props: this.propsFromNode(node.attributes),
+          }
+  
+          if (node.childNodes.length) {
+            component.children = this.loopNodelist(node.childNodes);
+          }
+          
+          return component;
       }
     }
 
