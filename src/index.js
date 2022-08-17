@@ -10,22 +10,20 @@ customElements.define('react-frame',
     }
 
     connectedCallback(){
-      setTimeout(()=> {
-        let doc = new DOMParser().parseFromString(this.innerHTML, "text/html");
-        let components = doc.documentElement.childNodes[1].childNodes;        
-        let output = this.loopNodelist(components);
-        
-        this.innerHTML = `<div data-root></div>`;
+      let doc = new DOMParser().parseFromString(this.innerHTML, "text/html");
+      let components = doc.documentElement.childNodes[1].childNodes;        
+      let output = this.loopNodelist(components);
+      
+      this.innerHTML = `<div data-root></div>`;
 
-        const container = this.querySelector('[data-root]');
-        const root = ReactDOM.createRoot(container);
+      const container = this.querySelector('[data-root]');
+      const root = ReactDOM.createRoot(container);
 
-        root.render(
-          <ChakraProvider theme={theme}>
-            <Bridge contents={output} />
-          </ChakraProvider>
-        );        
-      })
+      root.render(
+        <ChakraProvider theme={theme}>
+          <Bridge contents={output} />
+        </ChakraProvider>
+      );        
     }
 
     loopNodelist(collection) {
@@ -50,12 +48,17 @@ customElements.define('react-frame',
         case '#comment':
           return {}
         default:
+          let props = this.propsFromNode(node.attributes);
+          let name = this.handleName(node.localName);
           let component = {
             type: 'component',
-            component: this.handleName(node.localName),
-            props: this.propsFromNode(node.attributes),
+            component: name,
           }
-  
+          
+          if (Object.keys(props).length !== 0) {
+            component.props = props;
+          }
+
           if (node.childNodes.length) {
             component.children = this.loopNodelist(node.childNodes);
           }

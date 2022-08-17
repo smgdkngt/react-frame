@@ -11,9 +11,14 @@ const Bridge = ({contents}) => {
           output.push(item.text);
         } else if (item.type == 'component') {
           const ToRender = chakra[item.component];
-          output.push(<ToRender {...item.props}>
-            {createComponentArray(item.children)}
-          </ToRender>);
+
+          if (item.children) {
+            output.push(<ToRender {...item.props}>
+              {createComponentArray(item.children)}
+            </ToRender>);
+          } else {
+            output.push(<ToRender {...item.props} />);
+          }
         }
       });
     }
