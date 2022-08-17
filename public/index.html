@@ -10,34 +10,98 @@
       content="Web site created using create-react-app"
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
     <title>React App</title>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+    <react-frame>
+      <rm-menu>
+        <rm-menu-button
+          px="4"
+          py="2"
+          transition="all 0.2s"
+          border-radius="md"
+          border-width="1px"
+          _hover='{"bg":"gray.400"}'
+          _expanded='{"bg":"blue.400"}'
+          _focus='{"boxShadow":"outline"}'
+        >
+          File
+        </rm-menu-button>
+        <rm-menu-list>
+          <rm-menu-item>New File</rm-menu-item>
+          <rm-menu-item>New Window</rm-menu-item>
+          <!-- <rm-menu-divider></rm-menu-divider> -->
+          <rm-menu-item>Open...</rm-menu-item>
+          <rm-menu-item>Save File</rm-menu-item>
+        </rm-menu-list>
+      </rm-menu>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+      <rm-accordion m="5"  max-w="md">
+        <rm-accordion-item>
+            <rm-accordion-button>
+              <rm-box flex="1" text-align="left">
+                Section 1 title
+              </rm-box>
+              <rm-accordion-icon></rm-accordion-icon>
+            </rm-accordion-button>
+          <rm-accordion-panel pb="4">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+            commodo consequat.
+          </rm-accordion-panel>
+        </rm-accordion-item>
+
+        <rm-accordion-item>
+          <rm-accordion-button>
+            <rm-box flex="1" text-align="left" data-controller="test">
+              Section 2 title
+            </rm-box>
+            <rm-accordion-icon></rm-accordion-icon>
+          </rm-accordion-button>
+          <rm-accordion-panel pb="4">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+            commodo consequat.
+          </rm-accordion-panel>
+        </rm-accordion-item>
+      </rm-accordion>
+
+      <rm-box max-w="md" m="5" border-width="1px" border-radius="lg" overflow="hidden">
+        <!-- <rm-image src="https://picsum.photos/200/300"></rm-image> -->
+  
+        <rm-box p="6">
+          <rm-box display="flex" align-items="baseline">
+            <rm-badge border-radius="full" px="2" color-scheme="teal">
+              New
+            </rm-badge>
+            <rm-box color="gray.500" font-weight="semibold" letter-spacing="wide" font-size="xs" text-transform="uppercase" ml="2">
+              {property.beds} beds &bull; {property.baths} baths
+            </rm-box>
+          </rm-box>
+  
+          <rm-box mt="1" font-weight="semibold" as="h4" line-height="tight" no-of-lines="1">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+          </rm-box>
+  
+          <rm-box>
+            {property.formattedPrice}
+            <rm-box as="span" color="gray.600" font-size="sm">
+              / wk
+            </rm-box>
+          </rm-box>
+  
+          <rm-box display="flex" mt="2" align-items="center">
+            <rm-box as="span" ml="2" color="gray.600" font-size="sm">
+              {property.reviewCount} reviews
+            </rm-box>
+          </rm-box>
+        </rm-box>
+      </rm-box>
+
+    </react-frame>
   </body>
 </html>
