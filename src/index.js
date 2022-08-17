@@ -27,10 +27,13 @@ customElements.define('react-frame',
     }
 
     loopNodelist(collection) {
-      let output = [];
+      let output = false;
 
-      for (let i = 0; i < collection.length; i++) {
-        output.push(this.objectFromNode(collection.item(i)));
+      if (collection.length) {
+        output = [];
+        for (let i = 0; i < collection.length; i++) {
+          output.push(this.objectFromNode(collection.item(i)));
+        }
       }
 
       return output;
@@ -50,32 +53,30 @@ customElements.define('react-frame',
         default:
           let props = this.propsFromNode(node.attributes);
           let name = this.handleName(node.localName);
+          let children = this.loopNodelist(node.childNodes);
           let component = {
             type: 'component',
             component: name,
+            ...(props && {props: props}),
+            ...(children && {children: children})
           }
-          
-          if (Object.keys(props).length !== 0) {
-            component.props = props;
-          }
-
-          if (node.childNodes.length) {
-            component.children = this.loopNodelist(node.childNodes);
-          }
-          
+                   
           return component;
       }
     }
 
     propsFromNode(attributes) {
-      let output = {};
+      let output = false;
 
-      for (let i = 0; i < attributes.length; i++) {
-        let attr = this.handleName(attributes[i].nodeName, false);
-        if (attributes[i].nodeValue.startsWith('{')) {
-          output[attr] = JSON.parse(attributes[i].nodeValue);
-        } else {
-          output[attr] = attributes[i].nodeValue;
+      if (attributes.length) {
+        output = {};
+        for (let i = 0; i < attributes.length; i++) {
+          let attr = this.handleName(attributes[i].nodeName, false);
+          if (attributes[i].nodeValue.startsWith('{')) {
+            output[attr] = JSON.parse(attributes[i].nodeValue);
+          } else {
+            output[attr] = attributes[i].nodeValue;
+          }
         }
       }
 
