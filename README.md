@@ -6,7 +6,7 @@ This repository is an example on how to use React as a component library for fro
 
 ## Concept
 
-What this code does is basicly the following;
+What this code does is basically the following;
 
 - Create a new custom element called `<react-frame>`.
 - Everything within this custom element is parsed to a JSON structure.
@@ -94,8 +94,8 @@ vs
 
 ## Things to take into account
 
-- To make it valid HTML we need to use a prefix in front of every component name: `<[yourprefix]-[reactcomponentname]></[blabla]-[reactcomponentname]>`
-- Custom elements cannot be self-closing: `<input />` is valid, `<my-element \>` is not.
+- To make it valid HTML we need to use a prefix in front of every component name: `<[yourprefix]-[reactcomponentname]></[yourprefix]-[reactcomponentname]>`
+- Custom elements cannot be self-closing: `<input />` is valid, `<my-element />` is not.
 - You of course still loose _a lot_ of React advantages.
 - Multiple `<react-frame>`'s within each other, is no problem.
 - This is more or less a way to make it easier to use a server side templating language with a React component library.
