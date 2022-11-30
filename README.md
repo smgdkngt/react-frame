@@ -1,8 +1,8 @@
 # React Frame Concept
 
-This repository is an example on how to use React as a component library for frontends in Ruby on Rails. It is not solely for Ruby on Rails and can be used for other templating stuff as well. For testing purposes the component library [Chakra](https://chakra-ui.com/) is used. But this could easily be replaced by any other React component library.
+This repository is an example on how to use React as a component library for frontends in Ruby on Rails. It is not solely for Ruby on Rails and can be used for other templating stuff as well. For testing purposes the component library [Chakra](https://chakra-ui.com/) is used. But this could easily be replaced by any other React component library. Furthermore this project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Furthermore this project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[Example and playground](https://codepen.io/smgdkngt/pen/yLExpqa)
 
 ## Concept
 
